@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bixogua25y8ch"]
+
+[ext_resource type="Script" path="res://Scenes/component/experience_drop_component.gd" id="1_65uj2"]
+[ext_resource type="PackedScene" uid="uid://b5rafnkrfq0v1" path="res://Scenes/game_object/experience_small/experience_small.tscn" id="2_o8h0m"]
+
+[node name="ExperienceDropComponent" type="Node"]
+script = ExtResource("1_65uj2")
+experience_scene = ExtResource("2_o8h0m")
