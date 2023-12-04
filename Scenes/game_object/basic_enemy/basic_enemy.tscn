@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dedbe8iu8ysbf"]
+[gd_scene load_steps=16 format=3 uid="uid://dedbe8iu8ysbf"]
 
 [ext_resource type="Script" path="res://Scenes/game_object/basic_enemy/basic_enemy.gd" id="1_40emn"]
 [ext_resource type="Texture2D" uid="uid://bslu3curcd0c1" path="res://Scenes/game_object/basic_enemy/basic_enemy.png" id="2_f5d34"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cmclcdk3xt5jg" path="res://Scenes/component/hurtbox_component.tscn" id="4_5yuwc"]
 [ext_resource type="PackedScene" uid="uid://dqgw0nfe55238" path="res://Scenes/component/velocity_component.tscn" id="4_tc1gd"]
 [ext_resource type="PackedScene" uid="uid://cg2un7wl8163t" path="res://Scenes/component/death_component.tscn" id="5_gvedn"]
+[ext_resource type="Shader" path="res://Scenes/component/hit_flash_component.gdshader" id="6_s8nvm"]
+[ext_resource type="PackedScene" uid="uid://2d2o7loa1cp0" path="res://Scenes/component/hit_flash_component.tscn" id="6_tl3jj"]
 
 [sub_resource type="Animation" id="Animation_6mgjy"]
 length = 0.001
@@ -70,6 +72,11 @@ _data = {
 "walk": SubResource("Animation_3j40h")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50loj"]
+resource_local_to_scene = true
+shader = ExtResource("6_s8nvm")
+shader_parameter/lerp_percent = 0.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_up5kh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wgkfo"]
@@ -96,6 +103,11 @@ health_component = NodePath("../HealthComponent")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_tc1gd")]
 acceleration = 10.0
+
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_tl3jj")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_50loj")
 
 [node name="Visuals" type="Node2D" parent="."]
 
