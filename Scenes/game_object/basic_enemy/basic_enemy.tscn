@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dedbe8iu8ysbf"]
+[gd_scene load_steps=13 format=3 uid="uid://dedbe8iu8ysbf"]
 
 [ext_resource type="Script" path="res://Scenes/game_object/basic_enemy/basic_enemy.gd" id="1_40emn"]
 [ext_resource type="Texture2D" uid="uid://bslu3curcd0c1" path="res://Scenes/game_object/basic_enemy/basic_enemy.png" id="2_f5d34"]
 [ext_resource type="PackedScene" uid="uid://daaohfoxppiwn" path="res://Scenes/component/health_component.tscn" id="2_x6hok"]
 [ext_resource type="PackedScene" uid="uid://bixogua25y8ch" path="res://Scenes/component/experience_drop_component.tscn" id="3_lccoe"]
 [ext_resource type="PackedScene" uid="uid://cmclcdk3xt5jg" path="res://Scenes/component/hurtbox_component.tscn" id="4_5yuwc"]
+[ext_resource type="PackedScene" uid="uid://dqgw0nfe55238" path="res://Scenes/component/velocity_component.tscn" id="4_tc1gd"]
 [ext_resource type="PackedScene" uid="uid://cg2un7wl8163t" path="res://Scenes/component/death_component.tscn" id="5_gvedn"]
 
 [sub_resource type="Animation" id="Animation_6mgjy"]
@@ -90,7 +91,11 @@ libraries = {
 max_health = 10.0
 
 [node name="ExperienceDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_lccoe")]
+drop_percent = 0.35
 health_component = NodePath("../HealthComponent")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("4_tc1gd")]
+acceleration = 10.0
 
 [node name="Visuals" type="Node2D" parent="."]
 
