@@ -1,15 +1,23 @@
 extends CanvasLayer
 
+@onready var panel_container = %PanelContainer
 
 func _ready():
+	panel_container.pivot_offset = panel_container.size / 2
+	panel_container.scale = Vector2.ZERO
+	var tween = create_tween()
+	tween.tween_property(panel_container, "scale", Vector2.ZERO,  0)
+	tween.tween_property(panel_container, "scale", Vector2.ONE, .3)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	
 	get_tree().paused = true
-	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/button_restart.pressed.connect(on_restart_button_pressed)
-	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/button_quit.pressed.connect(on_quit_button_pressed)
+	%button_restart.pressed.connect(on_restart_button_pressed)
+	%button_quit.pressed.connect(on_quit_button_pressed)
 	
 	
 func set_defeat():
-	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/label_title.text = "Defeat"
-	$MarginContainer/PanelContainer/MarginContainer/VBoxContainer/label_description.text = "You lost!"
+	%label_title.text = "Defeat"
+	%label_description.text = "You lost!"
 	
 	
 func on_restart_button_pressed():
