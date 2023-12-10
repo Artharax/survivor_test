@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://y5ju05mw3bkm"]
+[gd_scene load_steps=9 format=3 uid="uid://y5ju05mw3bkm"]
 
 [ext_resource type="Script" path="res://Scenes/UI/end_screen.gd" id="1_01ddb"]
+[ext_resource type="AudioStream" uid="uid://ck532vubnom4l" path="res://assets/audio/victory_jingles_HIT01.ogg" id="2_1ookh"]
+[ext_resource type="PackedScene" uid="uid://bp0bb0q5wbbf6" path="res://Scenes/UI/sound_button.tscn" id="2_l2l1d"]
+[ext_resource type="AudioStream" uid="uid://cbyjdgv0ujpvc" path="res://assets/audio/defeat_jingles_HIT15.ogg" id="3_kobuj"]
 
 [sub_resource type="Animation" id="Animation_ffkln"]
 length = 0.001
@@ -66,6 +69,14 @@ libraries = {
 "": SubResource("AnimationLibrary_cau4u")
 }
 
+[node name="VictoryStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1ookh")
+volume_db = -5.0
+
+[node name="DefeatStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kobuj")
+volume_db = -5.0
+
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -125,13 +136,13 @@ theme_override_constants/outline_size = 8
 text = "You Won!"
 horizontal_alignment = 1
 
-[node name="button_restart" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="button_restart" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_l2l1d")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Restart
 "
 
-[node name="button_quit" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="button_quit" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_l2l1d")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit
