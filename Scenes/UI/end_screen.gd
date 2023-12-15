@@ -29,11 +29,15 @@ func play_jingle(defeat: bool = false):
 	
 	
 func on_restart_button_pressed():
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 	
 
 	
 func on_quit_button_pressed():
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
 	get_tree().quit()
 	
